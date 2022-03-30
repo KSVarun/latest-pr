@@ -3,6 +3,11 @@
   "displayName": "latest-pr",
   "description": "get number of the latest pr raised",
   "version": "0.0.1",
+  "publisher": "VarunKS",
+  "repository": {
+    "type": "get",
+    "url": "git@github.com:KSVarun/latest-pr.git"
+  },
   "engines": {
     "vscode": "^1.65.0"
   },
