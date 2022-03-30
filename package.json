@@ -17,7 +17,7 @@
     "commands": [
       {
         "command": "latest-pr.giveMeLatestPR",
-        "title": "Give me latest PR"
+        "title": "Give me latest PR number"
       }
     ]
   },
