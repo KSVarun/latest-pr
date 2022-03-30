@@ -2,8 +2,9 @@
   "name": "latest-pr",
   "displayName": "latest-pr",
   "description": "Gives the latest PR number",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "VarunKS",
+  "icon": "assets/profile-icon.png",
   "repository": {
     "type": "get",
     "url": "git@github.com:KSVarun/latest-pr.git"

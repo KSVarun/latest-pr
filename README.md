@@ -15,3 +15,11 @@ Open the command pallete with cmd / ctrl + shift + p and search for **Give me la
 ### 1.0.0
 
 - Fetch latest release number
+
+### 1.0.1
+
+- Updated message format
+
+### 1.0.2
+
+- Added extension image
