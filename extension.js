@@ -23,24 +23,44 @@ function activate(context) {
 
       // Display a message box to the user
       const cp = require('child_process');
-      cp.exec(
-        "git ls-remote origin 'pull/*/head' | awk '{print $2}' | awk -F '/' '{print $3}' | sort -n | tail -n1",
-        (err, stdout, stderr) => {
-          if (err) {
-            console.log('error: ' + err);
-            return;
-          }
-          if (stdout) {
-            vscode.window.showInformationMessage('latest PR number is', stdout);
-            return;
-          }
-          if (stderr) {
-            console.log('latest-pr', stderr);
-            return;
-          }
-          if (stdout.length === 0) {
-            vscode.window.showInformationMessage('No PR raised yet');
-          }
+      vscode.window.withProgress(
+        {
+          location: vscode.ProgressLocation.Window,
+          cancellable: false,
+          title: 'Getting latest PR number',
+        },
+        async (progress) => {
+          progress.report({ increment: 0 });
+          await new Promise((res, rej) => {
+            cp.exec(
+              "git ls-remote origin 'pull/*/head' | awk '{print $2}' | awk -F '/' '{print $3}' | sort -n | tail -n1",
+              (err, stdout, stderr) => {
+                if (err) {
+                  res();
+                  console.log('error: ' + err);
+                  return;
+                }
+                if (stdout) {
+                  res();
+                  vscode.window.showInformationMessage(
+                    'latest PR number is',
+                    stdout
+                  );
+                  return;
+                }
+                if (stderr) {
+                  res();
+                  console.log('latest-pr', stderr);
+                  return;
+                }
+                if (stdout.length === 0) {
+                  res();
+                  vscode.window.showInformationMessage('No PR raised yet');
+                }
+              }
+            );
+          });
+          progress.report({ increment: 100 });
         }
       );
     }
