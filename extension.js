@@ -37,7 +37,7 @@ function activate(context) {
               (err, stdout, stderr) => {
                 if (err) {
                   res();
-                  console.log('error: ' + err);
+                  console.log('latest-pr - ERROR: ' + err);
                   return;
                 }
                 if (stdout) {
@@ -50,7 +50,7 @@ function activate(context) {
                 }
                 if (stderr) {
                   res();
-                  console.log('latest-pr', stderr);
+                  console.log('latest-pr - ERROR:', stderr);
                   return;
                 }
                 if (stdout.length === 0) {
