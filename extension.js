@@ -35,14 +35,13 @@ function activate(context) {
                 if (stdout) {
                   res();
                   vscode.window.showInformationMessage(
-                    'latest PR number is',
-                    stdout
+                    `latest PR number is - ${stdout}`
                   );
                   return;
                 }
                 if (stderr) {
                   res();
-                  console.log('latest-pr - ERROR:', stderr);
+                  console.log(`latest-pr - ERROR:stderr`);
                   return;
                 }
                 if (stdout.length === 0) {

@@ -2,7 +2,7 @@
   "name": "latest-pr",
   "displayName": "latest-pr",
   "description": "get number of the latest pr raised",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "VarunKS",
   "repository": {
     "type": "get",
