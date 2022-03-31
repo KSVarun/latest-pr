@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const cp = require('child_process');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -14,7 +15,6 @@ function activate(context) {
   let disposable = vscode.commands.registerCommand(
     'latest-pr.giveMeLatestPR',
     function () {
-      const cp = require('child_process');
       vscode.window.withProgress(
         {
           location: vscode.ProgressLocation.Window,
@@ -60,7 +60,15 @@ function activate(context) {
   context.subscriptions.push(disposable);
 }
 
-function deactivate() {}
+function deactivate(context) {
+  for (const sub of context.subscriptions) {
+    try {
+      sub.dispose();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
 
 module.exports = {
   activate,
